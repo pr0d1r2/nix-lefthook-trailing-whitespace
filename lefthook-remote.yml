@@ -1,0 +1,10 @@
+---
+pre-commit:
+  commands:
+    trailing-whitespace:
+      run: timeout ${LEFTHOOK_TRAILING_WHITESPACE_TIMEOUT:-30} lefthook-trailing-whitespace {staged_files}
+
+pre-push:
+  commands:
+    trailing-whitespace:
+      run: timeout ${LEFTHOOK_TRAILING_WHITESPACE_TIMEOUT:-30} lefthook-trailing-whitespace {push_files}
