@@ -64,7 +64,7 @@ pre-commit:
       run: timeout ${LEFTHOOK_TRAILING_WHITESPACE_TIMEOUT:-30} lefthook-trailing-whitespace {staged_files}
     nix-flake-check:
       glob: "*.nix"
-      run: timeout ${LEFTHOOK_NIX_FLAKE_CHECK_TIMEOUT:-60} nix flake check --impure
+      run: timeout ${LEFTHOOK_NIX_FLAKE_CHECK_TIMEOUT:-60} nix flake check
 
 pre-push:
   parallel: true
@@ -73,4 +73,4 @@ pre-push:
       run: timeout ${LEFTHOOK_TRAILING_WHITESPACE_TIMEOUT:-30} lefthook-trailing-whitespace {push_files}
     nix-flake-check:
       glob: "*.nix"
-      run: timeout ${LEFTHOOK_NIX_FLAKE_CHECK_TIMEOUT:-60} nix flake check --impure
+      run: timeout ${LEFTHOOK_NIX_FLAKE_CHECK_TIMEOUT:-60} nix flake check
