@@ -41,7 +41,10 @@
       packages = forAllSystems (pkgs: {
         default = pkgs.writeShellApplication {
           name = "lefthook-trailing-whitespace";
-          runtimeInputs = [ pkgs.coreutils pkgs.gnugrep ];
+          runtimeInputs = [
+            pkgs.coreutils
+            pkgs.gnugrep
+          ];
           text = builtins.readFile ./lefthook-trailing-whitespace.sh;
         };
       });
