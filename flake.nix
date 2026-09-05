@@ -55,11 +55,17 @@
             runtimeInputs = [ pkgs.taplo ];
             text = builtins.readFile "${nix-lefthook-taplo-src}/lefthook-taplo.sh";
           };
+          pkg-bats-unit = pkgs.writeShellApplication {
+            name = "lefthook-bats-unit";
+            runtimeInputs = [ shells.batsWithLibs ];
+            text = "bats tests/unit";
+          };
           shells = nix-dev-shell-agentic.lib.mkShells {
             inherit pkgs inputs;
             ciPackages = [
               self.packages.${system}.default
               pkg-taplo
+              pkg-bats-unit
             ];
             shellHook = builtins.replaceStrings [ "@BATS_LIB_PATH@" ] [ "${shells.batsWithLibs}" ] (
               builtins.readFile ./dev.sh
