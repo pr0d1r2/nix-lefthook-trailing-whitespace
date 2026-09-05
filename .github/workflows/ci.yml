@@ -17,6 +17,7 @@ jobs:
         with:
           flake-check-timeout: '300'
           keep-home: 'true'
+          extra-env: 'HOME=${HOME}'
 
   build-macos:
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
@@ -27,3 +28,4 @@ jobs:
         with:
           flake-check-timeout: '300'
           keep-home: 'true'
+          extra-env: 'HOME=${HOME}'
