@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: pr0d1r2/nix-lefthook-ci-action@fc0c391434c5603e8289549b3cc91f922896cc51
+      - uses: pr0d1r2/nix-lefthook-ci-action@6aebe0cc2fef79dca75056048cf051300e138bda
         env:
           HOME: ${{ runner.os == 'macOS' && '/Users/runner' || '/home/runner' }}
         with:
@@ -25,7 +25,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: pr0d1r2/nix-lefthook-ci-action@fc0c391434c5603e8289549b3cc91f922896cc51
+      - uses: pr0d1r2/nix-lefthook-ci-action@6aebe0cc2fef79dca75056048cf051300e138bda
         env:
           HOME: ${{ runner.os == 'macOS' && '/Users/runner' || '/home/runner' }}
         with:
