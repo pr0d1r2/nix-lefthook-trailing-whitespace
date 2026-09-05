@@ -23,6 +23,10 @@ for f in "${files[@]}"; do
     echo "  ^-- trailing whitespace in $f"
     found=1
   fi
+  if [ -s "$f" ] && [ -n "$(tail -c1 "$f")" ]; then
+    echo "  ^-- missing final newline in $f"
+    found=1
+  fi
 done
 
 exit "$found"

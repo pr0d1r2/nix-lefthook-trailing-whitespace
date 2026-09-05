@@ -6,13 +6,13 @@
 
 Lefthook-compatible trailing whitespace checker, packaged as a Nix flake.
 
-Detects trailing spaces and tabs at end of lines. Filters non-existent files from staged arguments and checks the rest. Exits 0 when no files are found or no trailing whitespace is detected.
+Detects trailing spaces and tabs at end of lines, as well as missing final newlines. Filters non-existent files from staged arguments and checks the rest. Exits 0 when no files are found or no defects are detected.
 
 ## Usage
 
 ### Option A: Lefthook remote (recommended)
 
-Add to your `lefthook.yml` — no flake input needed, the wrapper only uses `grep`:
+Add to your `lefthook.yml` — no flake input needed, the wrapper uses standard `grep` and `tail` utilities:
 
 ```yaml
 remotes:

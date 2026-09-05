@@ -23,6 +23,19 @@ setup() {
     assert_success
 }
 
+@test "file ending in a newline passes" {
+    printf 'final newline\n' > "$TMP/final-newline.txt"
+    run lefthook-trailing-whitespace "$TMP/final-newline.txt"
+    assert_success
+}
+
+@test "file without a final newline fails" {
+    printf 'missing final newline' > "$TMP/missing-newline.txt"
+    run lefthook-trailing-whitespace "$TMP/missing-newline.txt"
+    assert_failure
+    assert_output --partial "missing final newline in $TMP/missing-newline.txt"
+}
+
 @test "file with trailing spaces fails" {
     printf 'clean line\ntrailing spaces   \n' > "$TMP/spaces.txt"
     run lefthook-trailing-whitespace "$TMP/spaces.txt"
@@ -33,6 +46,14 @@ setup() {
     printf 'clean line\ntrailing tab\t\n' > "$TMP/tab.txt"
     run lefthook-trailing-whitespace "$TMP/tab.txt"
     assert_failure
+}
+
+@test "file with both defects reports both diagnostics" {
+    printf 'trailing space and no newline ' > "$TMP/both-defects.txt"
+    run lefthook-trailing-whitespace "$TMP/both-defects.txt"
+    assert_failure
+    assert_output --partial "trailing whitespace in $TMP/both-defects.txt"
+    assert_output --partial "missing final newline in $TMP/both-defects.txt"
 }
 
 @test "multiple files: one with trailing whitespace causes failure" {
